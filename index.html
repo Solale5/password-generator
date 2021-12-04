@@ -11,6 +11,7 @@
       crossorigin="anonymous"
     />
     <title>Info Sec Group Proj</title>
+    <script src="script.js"></script>
   </head>
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -43,19 +44,17 @@
   <body>
     <h1>secure password generator</h1>
 
-    <script src="script.js"></script>
-    <br />Length of the generated password:
-    <input type="text" id="length" value="9" /> <br />Symbols:
+    <br />Length of the generated password (note that the passphrase is a fixed
+    length): <input type="text" id="length" value="9" /> <br />Symbols:
     <input type="checkbox" name="symbol" /> <br />Uppercase letter:
     <input type="checkbox" name="uppercaseLetter" /> <br />Lowercase letter:
     <input type="checkbox" name="lowercaseLetter" /> <br />number:
     <input type="checkbox" name="number" />
     <br />
-    <br /><input
-      type="button"
-      value="Generate"
-      onclick="exampleGenerator(document.getElementById('length').value)"
-    />
-    <div id="generatedPwd"></div>
+    <br />
+    <button class="bt">generate password</button>
+    <p>password: <div id="generatedPwd2"></div></p>
+    <p>passphrase: <div id="generatedPwd"></div></p>
+    
   </body>
 </html>
