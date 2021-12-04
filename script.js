@@ -7,7 +7,7 @@ window.onload = function () {
   });
 };
 
-//called by the makePassword function at the bottom of file
+//called by the makePassPhrase function at the bottom of file
 function createPassword(Arr, Length) {
   var arr = Arr;
   var pwd = "";
@@ -27,7 +27,7 @@ function checkLength() {
   }
   return goodLength;
 }
-
+//this function creates the passWORD
 function exampleGenerator() {
   if (checkLength() == false) {
     var msg = "Too short";
@@ -45,7 +45,7 @@ function exampleGenerator() {
 }
 
 // gets random words from seperate api
-//passes ones that are not too long to the makePassword function
+//passes ones that are not too long to the makePassPHRASE function
 function getWordsFromAPI() {
   console.log("requested api");
   fetch(`https://random-word-api.herokuapp.com/word?number=100`)
@@ -62,12 +62,12 @@ function getWordsFromAPI() {
           fouror5letterwords.push(element);
         }
       }
-      makePassword(fouror5letterwords);
+      makePassPHRASE(fouror5letterwords);
     });
 }
-
-//uses the create password method written by (placeholder for name)
-function makePassword(arrayOfRandomWords) {
+//makes the passPHRASE
+function makePassPHRASE(arrayOfRandomWords) {
+  //uses the createPassword method written by (placeholder for name)
   let password = createPassword(arrayOfRandomWords, 2);
 
   //add code here to check if checkboxes are clicked
