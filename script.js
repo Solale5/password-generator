@@ -49,7 +49,6 @@ function emptyCheckBox() {
       break;
     } else {
       uncheckBox = true;
-      break;
     }
   }
   return uncheckBox;
@@ -59,19 +58,19 @@ function emptyCheckBox() {
 function exampleGenerator() {
   //variable for password functionality
   var length = document.getElementById("length").value;
-  var number = "0,1,2,3,4,5,6,7,8,9".split(",");
-  var symbol = "~,`,!,@,#,$,%,^,&,*,(,),-,+,|,_,=,,[,],{,},<,>,?,/,.,;".split(
-    ","
-  );
+  var number = "0123456789";
+  var symbol = "~`!@#$%^&*-+|_=[]<>?/,.;";
   var lowerCaseLetter = "abcdefghijklmnopqrstuvwxyz";
   var upperCaseLetter = lowerCaseLetter.toUpperCase();
   var randomPassword = "";
   var passwordCharArray = [];
+
   //variable for checkbox
   var symbolCheckbox = document.getElementById("symbolCheck");
   var numberCheckbox = document.getElementById("numberCheck");
   var lowercaseCheckbox = document.getElementById("lowercaseCheck");
   var uppercaseCheckbox = document.getElementById("uppercaseCheck");
+
   //check to see if user click on one of the options
   if (emptyCheckBox() == true) {
     var msg = "Please select one of the option";
@@ -90,12 +89,14 @@ function exampleGenerator() {
     if (uppercaseCheckbox.checked) {
       passwordCharArray += upperCaseLetter;
     }
+
     //Set the password length to user specifications
     for (var i = 1; i <= length; i++) {
       //Build password string by randomly selecting characters from the character array
       var pwCharacters = Math.floor(Math.random() * passwordCharArray.length);
       randomPassword += passwordCharArray.charAt(pwCharacters);
     }
+
     //print the password
     document.getElementById("generatedPwd2").innerText = randomPassword;
     return randomPassword;
