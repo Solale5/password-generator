@@ -45,14 +45,14 @@
     <h1>secure password generator</h1>
 
     <br />Length of the generated password (note that the passphrase is a fixed
-    length): <input type="text" id="length" value="9" /> <br />Symbols:
-    <input type="checkbox" name="symbol" /> <br />Uppercase letter:
-    <input type="checkbox" name="uppercaseLetter" /> <br />Lowercase letter:
-    <input type="checkbox" name="lowercaseLetter" /> <br />number:
-    <input type="checkbox" name="number" />
+    length): <input type="number" min="1" id="length" value="9" /> <br />Include Symbols:
+    <input id="symbolCheck" type="checkbox" name="pl" />  <br />Include Numbers:
+    <input id="numberCheck" type="checkbox" name="pl" /> <br />Include Lowercase Letters:
+    <input id="lowercaseCheck" type="checkbox" name="pl" /> <br />Include Uppercase Letters:
+    <input id="uppercaseCheck" type="checkbox" name="pl" />
     <br />
     <br />
-    <button class="bt">generate a password</button>
+    <button class="bt">generate password</button>
     <p>password: <div id="generatedPwd2"></div></p>
 
 

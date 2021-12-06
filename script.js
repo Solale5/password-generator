@@ -22,28 +22,83 @@ function createPassword(Arr, Length) {
   return pwd;
 }
 
+//security so there is not HTML or javascript injection
+function scriptHTMLEntity(input) {
+  var newInput = input.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return newInput;
+}
+//checking the length requested by the user
 function checkLength() {
   var input = document.getElementById("length").value;
+  var length = scriptHTMLEntity(input);
   var goodLength = true;
-  if (input < 8) {
+  if (length < 8) {
     goodLength = false;
   }
   return goodLength;
 }
+//check to see if the all the checkbox are empty/not checked
+function emptyCheckBox() {
+  var markedUncheckbox = document.getElementsByName("pl");
+  var uncheckBox = true;
+
+  //loop to check if all the checkbox is unchecked
+  for (var checkbox of markedUncheckbox) {
+    if (checkbox.checked) {
+      uncheckBox = false;
+      break;
+    } else {
+      uncheckBox = true;
+      break;
+    }
+  }
+  return uncheckBox;
+}
+
 //this function creates the passWORD
 function exampleGenerator() {
-  if (checkLength() == false) {
-    var msg = "Too short";
-    document.getElementById("generatedPwd").innerText = msg;
+  //variable for password functionality
+  var length = document.getElementById("length").value;
+  var number = "0,1,2,3,4,5,6,7,8,9".split(",");
+  var symbol = "~,`,!,@,#,$,%,^,&,*,(,),-,+,|,_,=,,[,],{,},<,>,?,/,.,;".split(
+    ","
+  );
+  var lowerCaseLetter = "abcdefghijklmnopqrstuvwxyz";
+  var upperCaseLetter = lowerCaseLetter.toUpperCase();
+  var randomPassword = "";
+  var passwordCharArray = [];
+  //variable for checkbox
+  var symbolCheckbox = document.getElementById("symbolCheck");
+  var numberCheckbox = document.getElementById("numberCheck");
+  var lowercaseCheckbox = document.getElementById("lowercaseCheck");
+  var uppercaseCheckbox = document.getElementById("uppercaseCheck");
+  //check to see if user click on one of the options
+  if (emptyCheckBox() == true) {
+    var msg = "Please select one of the option";
+    document.getElementById("generatedPwd2").innerText = msg;
     return msg;
   } else {
-    var value = "0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,~,`,!,@,#,$,%,^,&,*,(,),-,+,|,_,=,,[,],{,},<,>,?,/,.,;".split(
-      ","
-    );
-    var Length = document.getElementById("length").value;
-    var rand = createPassword(value, Length);
-    document.getElementById("generatedPwd2").innerText = rand;
-    return rand;
+    if (symbolCheckbox.checked) {
+      passwordCharArray += symbol;
+    }
+    if (numberCheckbox.checked) {
+      passwordCharArray += number;
+    }
+    if (lowercaseCheckbox.checked) {
+      passwordCharArray += lowerCaseLetter;
+    }
+    if (uppercaseCheckbox.checked) {
+      passwordCharArray += upperCaseLetter;
+    }
+    //Set the password length to user specifications
+    for (var i = 1; i <= length; i++) {
+      //Build password string by randomly selecting characters from the character array
+      var pwCharacters = Math.floor(Math.random() * passwordCharArray.length);
+      randomPassword += passwordCharArray.charAt(pwCharacters);
+    }
+    //print the password
+    document.getElementById("generatedPwd2").innerText = randomPassword;
+    return randomPassword;
   }
 }
 
