@@ -1,9 +1,12 @@
-//starts projeect
+// function for when the password or passphrase button is clicked
 window.onload = function () {
   document.querySelector(".bt").addEventListener("click", function () {
     console.log("button clicked");
-    getWordsFromAPI();
     exampleGenerator();
+  });
+  document.querySelector(".bt2").addEventListener("click", function () {
+    console.log("button clicked");
+    getWordsFromAPI();
   });
 };
 
@@ -69,6 +72,9 @@ function getWordsFromAPI() {
 function makePassPHRASE(arrayOfRandomWords) {
   //uses the createPassword method written by (placeholder for name)
   let password = createPassword(arrayOfRandomWords, 2);
+  let num = Math.random() * 3;
+  let arr = "~,`,!,@,#,$,%,^,&,*,(,),-,+,|,_,=,,[,],{,},<,>,?,/,.,;".split(",");
+  password += createPassword(arr, num);
 
   //add code here to check if checkboxes are clicked
   document.getElementById("generatedPwd").innerText = password;
